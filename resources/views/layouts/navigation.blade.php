@@ -8,7 +8,7 @@
                     <a href="{{ url('/') }}" class="flex items-center space-x-3">
                         <x-application-logo class="block h-8 w-auto fill-current text-indigo-400 hover:rotate-12 transition-transform" />
                         <span class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-transparent">
-                            YourBrand
+                            HRM System
                         </span>
                     </a>
                 </div>
@@ -42,6 +42,17 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             </svg>
                             <span class="font-semibold">{{ __('Admin') }}</span>
+                        </span>
+                        <div class="absolute bottom-0 h-0.5 bg-red-400 transition-all duration-300 w-0 group-hover:w-full"></div>
+                    </x-nav-link>
+                    @endif
+                    @if (Auth::check() && Auth::user()->usertype == 'user')
+                    <x-nav-link :href="url('/user')" :active="request()->routeIs('/user')" class="group relative">
+                        <span class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-red-400 group-hover:animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                            <span class="font-semibold">{{ __('User') }}</span>
                         </span>
                         <div class="absolute bottom-0 h-0.5 bg-red-400 transition-all duration-300 w-0 group-hover:w-full"></div>
                     </x-nav-link>
@@ -141,13 +152,20 @@
                 </svg>
                 <span class="text-slate-200 group-hover:text-white">{{ __('About Us') }}</span>
             </x-responsive-nav-link>
-
             @if (Auth::check() && Auth::user()->usertype == 'admin')
             <x-responsive-nav-link :href="url('/admin')" :active="request()->routeIs('/admin')" class="flex items-center space-x-3 px-6 py-3 group">
                 <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
                 <span class="text-slate-200 group-hover:text-white font-medium">{{ __('Admin') }}</span>
+            </x-responsive-nav-link>
+            @endif
+            @if (Auth::check() && Auth::user()->usertype == 'user')
+            <x-responsive-nav-link :href="url('/user')" :active="request()->routeIs('/user')" class="flex items-center space-x-3 px-6 py-3 group">
+                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+                <span class="text-slate-200 group-hover:text-white font-medium">{{ __('User') }}</span>
             </x-responsive-nav-link>
             @endif
         </div>
